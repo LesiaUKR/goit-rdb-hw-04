@@ -1,0 +1,16 @@
+USE db_theme_3;
+SELECT COUNT(*) FROM order_details
+LEFT JOIN orders ON  orders.id = order_details.order_id
+INNER JOIN products ON  products.id = order_details.product_id
+INNER JOIN categories ON  categories.id = products.category_id
+INNER JOIN customers ON customers.id = orders.customer_id
+RIGHT JOIN employees ON employees.employee_id = orders.employee_id
+INNER JOIN shippers ON shippers.id = orders.shipper_id
+INNER JOIN suppliers ON suppliers.id = products.supplier_id;
+
+Операція LEFT JOIN, також відома як LEFT OUTER JOIN, у мові SQL використовується для об'єднання рядків із двох таблиць за певною умовою та включення всіх рядків з лівої таблиці, навіть якщо вони не мають відповідності в правій таблиці. Якщо немає відповідності в правій таблиці, виводяться значення NULL.
+
+RIGHT JOIN аналогічний LEFT JOIN: результатом буде таблиця, яка містить усі стовпці з правої таблиці, у нашому випадку це таблиця age. Якщо немає відповідності в names, то виводяться значення NULL.
+
+В нащому випадку кількість рядків не змінилась, що означає що дані не повторюються (інакше б кількість рядків зменшилась).
+Також всі рядки мають відповідність з правої таблиці (інакше б кількість рядків збільшилась)
